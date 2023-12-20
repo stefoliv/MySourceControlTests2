@@ -20,7 +20,7 @@
 % regulate the [membrane 
 % potential](https://www.youtube.com/watch?v=tIzF2tWy6KI). This last one 
 % acts as a signal. Following the application of a current pulse with a 
-% quite amplitude, the membrane potential of an excitable cell shows a large 
+% quite Amplitude, the membrane potential of an excitable cell shows a large 
 % alteration, called *Action Potential* (AP), before returning to 
 % equilibrium condition. 
 %#text{"align":"center"}
