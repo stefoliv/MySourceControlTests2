@@ -115,7 +115,7 @@ L = length(t); % Number of samples
 
 I = zeros(L,1); % External stimulus vector [nA]
 V=solve_model_HH(initial_values, I, dt, enable_Na, enable_K); % Membrane potential [mV] obtained by solving the model with I
-
+%my comment
 figure() %#output:A415BEFD
 subplot(2,1,1),plot(t,I,'red'),grid on,box on,axis([0,100,0,20]),ylabel('I [nA]') %#output:A415BEFD
 title('Membrane potential without any external stimulus') %#output:A415BEFD
@@ -266,7 +266,7 @@ V1=solve_model_HH(initial_values, I1, dt, enable_Na, enable_K); % Membrane poten
 T2=15; % [ms]
 I2=zeros(L,1);
 I2(floor(tI/dt):floor(tI/dt)+deltaI)=I0;
-I2(floor(tI/dt)+deltaI+1+floor(T2/dt):floor(tI/dt)+2*deltaI+1+floor(T2/dt))=I0; % External impulsive stimulus vector I2
+I2(floor(tI/dt)+deltaI+1+floor(T2/dt):floor(tI/dt)+2*deltaI+1+floor(T2/dt))=I0; % external impulsive stimulus vector I2
 V2=solve_model_HH(initial_values, I2, dt, enable_Na, enable_K); % Membrane potential [mV] obtained by solving the model with I2
 
 figure() %#output:2BC6F6A7
