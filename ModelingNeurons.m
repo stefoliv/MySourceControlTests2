@@ -1,5 +1,5 @@
 %#text
-% # AAInside the Brain: Modelling the Neuron
+% # AAInside the Brain: Modelling the NeuronNN
 %
 % **Authors:** Alice Andalò, Davide Borr
 %
