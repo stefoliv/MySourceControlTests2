@@ -1,12 +1,12 @@
 %#text
-% # Inside the Brain: Modelling the Neuron
-%#text
+% # AAInside the Brain: Modelling the Neuron
+%
 % **Authors:** Alice Andalò, Davide Borr
 %
 % **University:** University of Bologna
 %
 % **Department:** Department of Electrical, Electronic, And Information 
-% Engineering "Guglielmo Marconi" - DEI
+% Engineering "Guglielmo Marconi" \- DEI
 
 %%
 %#text
@@ -26,24 +26,24 @@
 %#text
 %
 %#text
-% The most famous model describing a neuron's AP is that of Hodgin-Huxley 
+% The most famous model describing a neuron's AP is that of Hodgin\-Huxley 
 % (1952).
 %
-% ## Hodgin-Huxley model
+% ## Hodgin\-Huxley model
 %
 % The value of the membrane potential (V) is defined by the flow of several 
 % ions (Sodium, Potassium and others) through the membrane thanks to ion 
 % channels.
 %
-% *The Hodgin-Huxley model* provide the resolution of a system of four 
+% *The Hodgin\-Huxley model* provide the resolution of a system of four 
 % ordinary differential equations. The first equation represent the total 
-% current through the membrane (Eq 1.1), to which are added three state 
+% current through the membrane (Eq 1\.1), to which are added three state 
 % equations. Indeed m, h and n are state variables that describe the 
 % kinetics of the different ion channels and their value is defined by a 
 % specific differential equation (see Appendix section).
 %
-% $C\frac{dV}{dt}+g_{Namax}m^{3}h\left(V-E_{Na}\right)+g_{Kmax}n^{4}\left(V-E_{K}\right)+g_{eq}\left(V-E_{eq}\right)=i$ 
-%              (Eq 1.1)
+% $C\\frac{dV}{dt}\+g\_{Namax}m^{3}h\\left(V\-E\_{Na}\\right)\+g\_{Kmax}n^{4}\\left(V\-E\_{K}\\right)\+g\_{eq}\\left(V\-E\_{eq}\\right)=i$ 
+%              (Eq 1\.1)
 %
 % In order to solve the differential system we can use the Euler's method, 
 % a 1st order numerical method useful to find the solution of the system 
@@ -52,9 +52,9 @@
 % For this reason, in order to simulate the behaviour of the neuron, we have 
 % to set all the initial values. Initially we can assume that the neuron is 
 % in equilibrium, without any external stimolous applied ($I=0$). Regarding 
-% the initial value of V ($V_{0}=V\left(t=0\right)$), we can set this to a 
-% typical resting potential of -65 mV, while for m, n and h we have to think 
-% a little bit...
+% the initial value of V ($V\_{0}=V\\left(t=0\\right)$), we can set this to 
+% a typical resting potential of \-65 mV, while for m, n and h we have to 
+% think a little bit...
 
 V0 = -65; % Resting Potential [mV]
 %#text
@@ -63,20 +63,20 @@ V0 = -65; % Resting Potential [mV]
 %
 % We can take a look on the ordinary differential equations system and 
 % solve it under the assumption of $I=0$ and the equilibrium condition, 
-% reached when all the derivatives are 0: $\frac{dV}{dt}$= 0, 
-% $\frac{dm}{dt}=0$, $\frac{dn}{dt}=0$ and $\frac{dh}{dt}=0\n$. The last 3 
-% conditions leads to 3 algebraic equations that allows to obtain the target 
-% initial values. In particular, for $m${"editStyle":"visual"} (and 
+% reached when all the derivatives are 0: $\\frac{dV}{dt}$= 0, 
+% $\\frac{dm}{dt}=0$, $\\frac{dn}{dt}=0$ and $\\frac{dh}{dt}=0\n$. The last 
+% 3 conditions leads to 3 algebraic equations that allows to obtain the 
+% target initial values. In particular, for $m${"editStyle":"visual"} (and 
 % similarly for $n${"editStyle":"visual"} and $h${"editStyle":"visual"}):
 %
-% $0=\alpha_{m}\left(V_{0}\right)\left(1-m_{0}\right)-\beta_{m}\left(V_{0}\right)m_{0}$,
+% $0=\\alpha\_{m}\\left(V\_{0}\\right)\\left(1\-m\_{0}\\right)\-\\beta\_{m}\\left(V\_{0}\\right)m\_{0}$,
 %
-% where $m_{0}=m\left(t=0\right)$.
+% where $m\_{0}=m\\left(t=0\\right)$.
 %
-% Solving the algebraic equation in $m_{0}$ evaluating 
-% $\alpha_{m}\left(V_{0}\right)$ and $\beta_{m}\left(V_{0}\right)$ (see 
-% Appendix section) we get the initial value of $m${"editStyle":"visual"} 
-% (and similarly for $n${"editStyle":"visual"} and 
+% Solving the algebraic equation in $m\_{0}$ evaluating 
+% $\\alpha\_{m}\\left(V\_{0}\\right)$ and $\\beta\_{m}\\left(V\_{0}\\right)$ 
+% (see Appendix section) we get the initial value of 
+% $m${"editStyle":"visual"} (and similarly for $n${"editStyle":"visual"} and 
 % $h${"editStyle":"visual"}).
 
 alpha_m0 = 0.1*(-40-V0)/( exp( (-40 - V0) /10 ) - 1 );
@@ -96,9 +96,9 @@ enable_Na=1;% Normal Na dynamics (flag enable_Na=1)
 enable_K=1;% Normal K dynamics (flag enable_K=1)
 %#text
 % During all next simulations we have to define a time vector based on the 
-% maximum time value of simulation ($t_{max}$) and the time step value 
-% ($\Delta t$), with the last one particularly important for the Euler's 
-% method. Let's set $t_{max}=100\ ms$ and $\Delta t=0.01\ ms$.
+% maximum time value of simulation ($t\_{max}$) and the time step value 
+% ($\\Delta t$), with the last one particularly important for the Euler's 
+% method. Let's set $t\_{max}=100 ms$ and $\\Delta t=0\.01 ms$.
 
 dt = 0.01; % Temporal resolution or time step [ms]
 tmax = 100;  % Maximum time of simulation [ms]
@@ -107,7 +107,7 @@ L = length(t); % Number of samples
 %%
 %#text
 % **What happens at the neuron without any external stimulus 
-% (**$\mathbf{I=0\ nA}$)**?**
+% (**$\\mathbf{I=0 nA}$)**?**
 
 I = zeros(L,1); % External stimulus vector [nA]
 V=solve_model_HH(initial_values, I, dt, enable_Na, enable_K); % Membrane potential [mV] obtained by solving the model with I
@@ -118,7 +118,7 @@ title('Membrane potential without any external stimulus')
 subplot(2,1,2),plot(t,V,'blue'),grid on,box on,axis([0,100,-80,40]),xlabel('Time [ms]'),ylabel('V [mV]')
 %#text
 % As we can see from the previous figure, with an external current value 
-% $I=0\ nA$ the membrane potential remains constant at the resting value.
+% $I=0 nA$ the membrane potential remains constant at the resting value.
 
 %%
 %#text
@@ -161,17 +161,17 @@ subplot(2,3,3),plot(t,I3,'red'),grid on,box on,axis([0,100,0,20])
 subplot(2,3,6),plot(t,V3,'blue'),grid on,box on,axis([0,100,-80,40]),xlabel('Time [ms]')
 %#text
 % As we can see from the previous figure, with an external current value 
-% $I=5\ nA$ the membrane potential shows an initial transient and for 
-% $t\rightarrow \inf$ it settles on a value near to the resting value. 
-% Instead, with an external current value $I=10\ nA$ or $I=15\ nA$ the 
-% neuron produce many APs (second and third column of plots). A single AP is 
+% $I=5 nA$ the membrane potential shows an initial transient and for 
+% $t\\rightarrow \\inf$ it settles on a value near to the resting value. 
+% Instead, with an external current value $I=10 nA$ or $I=15 nA$ the neuron 
+% produce many APs (second and third column of plots). A single AP is 
 % composed by an initial depolarization phase, in which the potential grows 
 % up, and a repolarization phase, in which the potential falls down, in both 
-% cases mantaining $V>V_{0}$. After that, there is a hyperpolarization phase 
-% where the potential reaches values $V<V_{0}$. Furthermore, we can notice 
-% the *stereotyped behaviour of the AP*: regardless the amplitude of the 
-% current applied, a single AP pattern occurs in the same way once the 
-% potential exceeds the *threshold potential* (all-or-none law). For this 
+% cases mantaining $V>V\_{0}$. After that, there is a hyperpolarization 
+% phase where the potential reaches values $V<V\_{0}$. Furthermore, we can 
+% notice the *stereotyped behaviour of the AP*: regardless the amplitude of 
+% the current applied, a single AP pattern occurs in the same way once the 
+% potential exceeds the *threshold potential* (all\-or\-none law). For this 
 % reason, when an external stimulus is big enough to reach our brain, a 
 % *train of APs* is generated and the information is encoded in frequency 
 % (second and third columns).
@@ -232,10 +232,10 @@ subplot(3,1,1),plot(t,I,'r'), grid on, box on, ylabel('I [nA]'), axis([0,100,0,2
 subplot(3,1,2),plot(t,V_normal),grid on, box on,ylabel('V [mV]'), 
 subplot(3,1,3),plot(t,V_noNa,'g'),grid on, box on, xlabel('Time [ms]'),ylabel('V [mV]'), axis([0,100,-80,40])
 %#text
-% From the previous figure we can understand the *Na-channels role* 
+% From the previous figure we can understand the *Na\-channels role* 
 % evaluating the first deporalization phase of the AP: with an impairment of 
 % 100% the membrane potential can't reach the threshold in order to trigger 
-% an AP. You can try to change enable_Na value between 0 and 1 to see 
+% an AP. You can try to change enable\_Na value between 0 and 1 to see 
 % intermediate behaviours.
 
 %%
@@ -315,31 +315,34 @@ subplot(2,2,4),plot(t,V3),grid on, box on,xlabel('Time [ms]'),
 % here is the appendix
 %
 % *Additional Status Variables:* m, h, n describes the kinetics of ion 
-% channels, with values between 0 and 1. They are associated with sodium 
+% channels, with values between 0 and 1\. They are associated with sodium 
 % channel activation, sodium channel inactivation and potassium channel 
 % activation, respectively. For more details see the original work of 
-% Hodgkin-Huxley.
+% Hodgkin\-Huxley.
 %
 % - 
-% $\frac{dm}{dt}=\alpha_{m}\left(V\right)\left(1-m\right)-\beta_{m}\left(V\right)m$
+% $\\frac{dm}{dt}=\\alpha\_{m}\\left(V\\right)\\left(1\-m\\right)\-\\beta\_{m}\\left(V\\right)m$
 % - 
-% $\frac{dh}{dt}=\alpha_{h}\left(V\right)\left(1-h\right)-\beta_{h}\left(V\right)h\n$
+% $\\frac{dh}{dt}=\\alpha\_{h}\\left(V\\right)\\left(1\-h\\right)\-\\beta\_{h}\\left(V\\right)h\n$
 % - 
-% $\frac{dn}{dt}=\alpha_{n}\left(V\right)\left(1-n\right)-\beta_{n}\left(V\right)n$
+% $\\frac{dn}{dt}=\\alpha\_{n}\\left(V\\right)\\left(1\-n\\right)\-\\beta\_{n}\\left(V\\right)n$
 %
-% *Additional Boltzmann Equations*: $\alpha$ and $\beta\n$ are obtained 
-% from the following algebraic equations, based on Hodgin-Huxley sperimental 
-% results.
+% *Additional Boltzmann Equations*: $\\alpha$ and $\\beta\n$ are obtained 
+% from the following algebraic equations, based on Hodgin\-Huxley 
+% sperimental results.
 %
 % - 
-% $\alpha_{m}\left(V\right)=0.1\frac{-40-V}{\exp{\left(\frac{-40-V}{10}\right)}-1}$
-% - $\beta_{m}\left(V\right)=4\exp{\left(\frac{-65-V}{-18}\right)}\n$
-% - $ \alpha_{h}\left(V\right)=0.07\exp{\left(\frac{-65-V}{-20}\right)}$
+% $\\alpha\_{m}\\left(V\\right)=0\.1\\frac{\-40\-V}{\\exp{\\left(\\frac{\-40\-V}{10}\\right)}\-1}$
 % - 
-% $\beta_{h}\left(V\right)=\frac{1}{\exp{\left(\frac{-35-V}{10}\right)+1}}$
+% $\\beta\_{m}\\left(V\\right)=4\\exp{\\left(\\frac{\-65\-V}{\-18}\\right)}\n$
+% - $ 
+% \\alpha\_{h}\\left(V\\right)=0\.07\\exp{\\left(\\frac{\-65\-V}{\-20}\\right)}$
 % - 
-% $\alpha_{n}\left(V\right)=0.01\frac{-55-V}{\exp{\left(\frac{-55-V}{10}\right)}-1}$
-% - $\beta_{n}\left(V\right)=0.125\exp{\left(\frac{-65-V}{80}\right)}$
+% $\\beta\_{h}\\left(V\\right)=\\frac{1}{\\exp{\\left(\\frac{\-35\-V}{10}\\right)\+1}}$
+% - 
+% $\\alpha\_{n}\\left(V\\right)=0\.01\\frac{\-55\-V}{\\exp{\\left(\\frac{\-55\-V}{10}\\right)}\-1}$
+% - 
+% $\\beta\_{n}\\left(V\\right)=0\.125\\exp{\\left(\\frac{\-65\-V}{80}\\right)}$
 %
 % ## Local Functions
 
